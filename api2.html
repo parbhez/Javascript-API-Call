@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript API</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="col-md-12">
+            <div class="row">
+                <h2>Javascript API calling by async && await using</h2>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //Create makeRequest url.
+        //this function using all method by calling another function
+        const makeRequest = async(url) => {
+            const res = await fetch(url);
+            if (!res.ok) {
+                const message = `Error : ${res.status}`;
+                throw new Error(message);
+            }
+            const data = await res.json();
+            return data;
+        }
+    </script>
+
+    <!-- <script>
+        //Getting a resource or Listing all resources
+        const getData = () => {
+            makeRequest('https://jsonplaceholder.typicode.com/posts/1')
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+
+        getData();
+    </script> -->
+
+    <!-- <script>
+        //Creating a resource
+        const getData = () => {
+            makeRequest('https://jsonplaceholder.typicode.com/posts', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        title: 'Masud',
+                        body: 'CSE',
+                        userId: 10,
+                    }),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    },
+                })
+                .then((res) => {
+                    console.log("Data Created Successfully");
+                    console.log(res);
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+
+        getData();
+    </script> -->
+
+    <!-- <script>
+        //Update a resource
+        const updateData = () => {
+            makeRequest('https://jsonplaceholder.typicode.com/posts/1', {
+                    method: 'PUT',
+                    body: JSON.stringify({
+                        id: 1,
+                        title: 'Masud Update',
+                        body: 'CSE Update',
+                        userId: 10,
+                    }),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    },
+                })
+                .then((res) => {
+                    console.log("Data Update Successfully");
+                    console.log(res);
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+
+        updateData();
+    </script> -->
+    <!-- 
+    <script>
+        //Update a resource using PATCH method
+        const updateData = () => {
+            makeRequest('https://jsonplaceholder.typicode.com/posts/1', {
+                    method: 'PATCH',
+                    body: JSON.stringify({
+                        body: 'CSE Update',
+                    }),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    },
+                })
+                .then((res) => {
+                    console.log("Data Update Successfully by PATCH method");
+                    console.log(res);
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+
+        updateData();
+    </script> -->
+
+
+    <script>
+        //DELETE a resource using Delete method
+        const deleteData = () => {
+            makeRequest('https://jsonplaceholder.typicode.com/posts/10', {
+                    method: 'DELETE',
+                })
+                .then((res) => {
+                    console.log("Data Deleted Successfully by Delete method");
+                    console.log(res);
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+
+        deleteData();
+    </script>
+</body>
+
+</html>
